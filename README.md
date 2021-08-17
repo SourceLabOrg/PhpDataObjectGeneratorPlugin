@@ -1,7 +1,7 @@
 # Php Data Object Generator plugin for IntelliJ and PhpStorm
 
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/17440.svg)](https://plugins.jetbrains.com/plugin/17440)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/17440.svg)](https://plugins.jetbrains.com/plugin/17440)
 
 <!-- Plugin description -->
 Code generator plugin for PHP Data Objects (POJO, POPO, DTO, etc...) and Builder pattern objects.
