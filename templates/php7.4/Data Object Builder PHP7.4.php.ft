@@ -1,0 +1,61 @@
+<?php
+#parse("PHP File Header.php")
+
+#if( ${NAMESPACE} )
+namespace ${NAMESPACE};
+#end
+
+#foreach( ${IMPORT} in ${IMPORTS} )
+use $IMPORT;
+#end
+
+/**
+ * Builder instance for {@see ${TARGET_CLASSNAME}}.
+ */
+class ${CLASSNAME}
+{
+#foreach( ${PROPERTY} in ${CLASS_PROPERTIES} )
+    /** @var ${PROPERTY.asPhpDocDeclaration()} */
+    ${PROPERTY.asClassPropertyDeclaration()};
+
+#end
+
+#foreach( ${PROPERTY} in ${CLASS_PROPERTIES} )
+    /**
+     * @param ${PROPERTY.asPhpDocDeclaration()} Set ${PROPERTY.getName()} property.
+     * @return \$this Builder instance.
+     */
+    public function with${PROPERTY.getNameCapitalized()}(${PROPERTY.asMethodParameter()}): ${CLASSNAME}
+    {
+        \$this->${PROPERTY.getName()} = $${PROPERTY.getName()};
+        return \$this;
+    }
+
+#end
+
+    /**
+     * Validate the builder instance.
+     * @return true if the builders properties are valid, false if not.
+     */
+     private function isValid(): bool {
+        // TODO Add validation logic.
+        return true;
+     }
+
+    /**
+     * @return ${TARGET_CLASSNAME} New instance from Builder.
+     * @throws \LogicException if Builder does not validate.
+     */
+    public function build(): ${TARGET_CLASSNAME}
+    {
+        if (!\$this->isValid()) {
+            throw new \LogicException(__METHOD__  . ' Called with Incomplete or Invalid Properties');
+        }
+        return new ${TARGET_CLASSNAME}(
+#foreach( ${PROPERTY} in ${CLASS_PROPERTIES} )
+            \$this->${PROPERTY.getName()}#if( $foreach.hasNext ),#end
+
+#end
+        );
+    }
+}

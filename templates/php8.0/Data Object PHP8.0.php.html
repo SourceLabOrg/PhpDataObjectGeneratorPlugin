@@ -1,0 +1,190 @@
+<html>
+<body>
+<table width="100%" border="0" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+    <tr>
+        <td colspan="3">
+            <font face="verdana" size="-1">
+                This is a template used to create new PHP Data Object classes using PHP version 8.0.
+            </font>
+        </td>
+    </tr>
+</table>
+<table width="100%" border="0" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+    <tr>
+        <td colspan="3"><font face="verdana" size="-1">Predefined variables will take the following values:</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${NAME}, ${CLASSNAME}, ${CLASS_NAME}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Name of the PHP data class.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${NAMESPACE}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Namespace of the PHP data class.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${IMPORTS}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Array of Fully Qualified class names used within the class for use in import/use statements.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${BUILDER_CLASSNAME}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">The class name of the Builder instance.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${IS_IMMUTABLE}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">True if setter methods are to be generated.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${CLASS_PROPERTIES}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">
+            Array of PHP class properties defined on the class.<br/>
+            Example Usage:
+<pre>
+    #foreach( ${PROPERTY} in ${CLASS_PROPERTIES} )
+        // get the name of the property.
+        ${PROPERTY.getName()}
+    #end
+</pre>
+
+            The following methods are defined on each ${CLASS_PROPERTIES} instance:<br/>
+
+            <h4>Accessors</h4>
+            <ul>
+                <li>
+                    [String] getScope() : The scope of the property ("private", "protected", or "public")
+                </li>
+                <li>
+                    [Boolean] isNullable() : True if the property is defined as nullable.
+                </li>
+                <li>
+                    [String] getFQType() : Fully Qualified class type of the property, including namespace.
+                </li>
+                <li>
+                    [String] getType() : Class type of the property, does NOT include the namespace of the class.
+                </li>
+                <li>
+                    [String] getNamespace() : Namespace of the class the property is defined as.
+                </li>
+                <li>
+                    [String] getName() : Name of the property.
+                </li>
+                <li>
+                    [String] getDefaultValue() : The default value the property is defined as having.
+                </li>
+            </ul>
+            <h4>State Checking</h4>
+            <ul>
+                <li>
+                    [Boolean] isNullable() : True if the property allows nulls, false if not.
+                </li>
+                <li>
+                    [Boolean] hasType() : True if the property has a type defined. False if no type is defined.
+                </li>
+                <li>
+                    [Boolean] hasNamespace() : True if the property's classtype has an associated namespace.
+                </li>
+                <li>
+                    [Boolean] hasDefaultValue() : True if the property has a default value associated.
+                </li>
+
+            </ul>
+            <h4>Code Generator Helpers</h4>
+            <ul>
+                <li>
+                    [String] asMethodParameter() : Definition of the property as used as a method parameter, including any default value if defined.
+                </li>
+                <li>
+                    [String] asMethodParameterWithoutDefaultValue() : Definition of the property as used as a method parameter, not including a default value if defined.
+                </li>
+                <li>
+                    [String] asClassPropertyDeclaration() : Definition of the property as used as in a class definition statement.
+                </li>
+                <li>
+                    [String] asPhpDocDeclaration() : Definition of the property as used in a PhpDoc statement.
+                </li>
+                <li>
+                    [String] getNameCapitalized() : Name of the property, in UpperCaseSnakeFormat.
+                </li>
+            </ul>
+        </font>
+        </td>
+    </tr>
+</table>
+<table width="100%" border="0" cellpadding="5" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111">
+    <tr>
+        <td colspan="3"><font face="verdana" size="-1">The following standard template variables can also be used:</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${FILE_NAME}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current file name.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${USER}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current user system login name.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${DATE}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current system date.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${TIME}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current system time.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${YEAR}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current year.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${MONTH}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current month.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${DAY}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current day of the month.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${HOUR}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current day of the month.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${DAY}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current hour.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${MINUTE}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current minute.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${PRODUCT_NAME}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current IDE name.</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${PROJECT_NAME}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Current project name</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><nobr><font face="verdana" size="-2"><b>${DS}</b></font></nobr></td>
+        <td width="10">&nbsp;</td>
+        <td width="100%" valign="top"><font face="verdana" size="-1">Dollar sign, evaluates to a plain '$' character.</font></td>
+    </tr>
+</table>
+</table>
+</body>
+</html>

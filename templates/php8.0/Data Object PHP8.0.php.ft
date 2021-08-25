@@ -1,0 +1,67 @@
+<?php
+#parse("PHP File Header.php")
+
+#if( ${NAMESPACE} )
+namespace ${NAMESPACE};
+#end
+
+#foreach( ${IMPORT} in ${IMPORTS} )
+use ${IMPORT};
+#end
+
+#parse("PHP Class Doc Comment.php")
+class ${CLASSNAME}
+{
+#foreach( ${PROPERTY} in ${CLASS_PROPERTIES} )
+    /** @var ${PROPERTY.asPhpDocDeclaration()} */
+#end
+
+#if ( ${BUILDER_CLASSNAME} )
+    /**
+     * Create new Builder instance.
+     * @return ${BUILDER_CLASSNAME}
+     */
+    public static function newBuilder(): ${BUILDER_CLASSNAME}
+    {
+        return new ${BUILDER_CLASSNAME}();
+    }
+#end
+
+    /**
+     * Constructor.
+#if ( ${BUILDER_CLASSNAME} )
+     * Use {@see ${BUILDER_CLASSNAME}} for creating instances via {@see ${CLASSNAME}::newBuilder()}.
+#end
+     *
+#foreach( ${PROPERTY} in ${CLASS_PROPERTIES} )
+     * @param ${PROPERTY.asPhpDocDeclaration()} Set ${PROPERTY.getName()} property.
+#end
+     */
+    public function __construct(#foreach( ${PROPERTY} in ${CLASS_PROPERTIES} )$PROPERTY.asClassPropertyDeclaration()#if( $foreach.hasNext ),#end #end)
+    {
+    }
+
+#foreach( ${PROPERTY} in ${CLASS_PROPERTIES} )
+    /**
+     * @return ${PROPERTY.getType()}
+     */
+    public function get${PROPERTY.getNameCapitalized()}()#if( ${PROPERTY.getType()} )#if ( ${PROPERTY.hasType()} ): ${PROPERTY.getType()} #end #end
+
+    {
+        return \$this->${PROPERTY.getName()};
+    }
+
+#if ( ! ${IS_IMMUTABLE} )
+    /**
+     * @param ${PROPERTY.asPhpDocDeclaration()} Set ${PROPERTY.getName()} property.
+     * @return \$this instance.
+     */
+    public function set${PROPERTY.getNameCapitalized()}(${PROPERTY.asMethodParameter()}): ${CLASSNAME}
+    {
+        \$this->${PROPERTY.getName()} = $${PROPERTY.getName()};
+        return \$this;
+    }
+
+#end
+#end
+}
